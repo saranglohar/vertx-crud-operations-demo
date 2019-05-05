@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="MyApp" packages="">
+  <Appenders>
+    <RollingFile name="RollingFile" fileName="../application-log.log"
+                 filePattern="../application-log-%d{dd-MM-yyyy}-%i.log.zip">
+      <PatternLayout>
+        <Pattern>%d{dd-MMM-yy HH:mm:ss} (%F:%L): %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+        <SizeBasedTriggeringPolicy size="5 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy fileIndex="nomax" compressionLevel= "9" />
+    </RollingFile>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{dd-MMM-yy HH:mm:ss} (%F:%L): %m%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="INFO">
+      <AppenderRef ref="RollingFile"/>
+       <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>
